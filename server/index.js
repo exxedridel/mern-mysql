@@ -4,12 +4,12 @@ import { PORT } from "./config.js";
 import indexRoutes from "./routes/index.routes.js";
 import taskRoutes from "./routes/tasks.routes.js";
 
-const expressServer = express();
+const app = express();
 
-expressServer.use(express.json());
+app.use(express.json());
 
-expressServer.use(indexRoutes);
-expressServer.use(taskRoutes);
+app.use(indexRoutes);
+app.use(taskRoutes);
 
-expressServer.listen(PORT);
+app.listen(PORT);
 console.log(`🚀 Server is running at http://localhost:${PORT}`);
