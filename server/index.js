@@ -6,6 +6,8 @@ import taskRoutes from "./routes/tasks.routes.js";
 
 const expressServer = express();
 
+expressServer.use(express.json());
+
 expressServer.use(indexRoutes);
 expressServer.use(taskRoutes);
 
