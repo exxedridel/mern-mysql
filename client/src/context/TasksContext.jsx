@@ -5,6 +5,7 @@ import {
   createTaskRequest,
   getTaskRequest,
   updateTaskRequest,
+  toggleTaskDoneRequest,
 } from "../api/tasks.api";
 
 export const TasksContext = createContext();
@@ -30,7 +31,7 @@ export const TasksContextProvider = ({ children }) => {
       const response = await deleteTaskRequest(id);
       setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -48,7 +49,7 @@ export const TasksContextProvider = ({ children }) => {
       const response = await getTaskRequest(id);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -57,14 +58,37 @@ export const TasksContextProvider = ({ children }) => {
       const response = await updateTaskRequest(id, updatedTask);
       console.log(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    }
+  };
+
+  const toggleTaskDone = async (id) => {
+    try {
+      const taskFound = tasks.find((task) => task.id === id);
+      await toggleTaskDoneRequest(id, !taskFound.done);
+      // tasks.map((task) =>
+      //   task.id === id ? (task.done = task.done === 0 ? 1 : 0) : task.done
+      // );
+      // setTasks([...tasks]);
+      /* OR JUST */
+      setTasks(tasks.map((task) => task.id === id ? { ...task, done: !task.done } : task));
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     // exporting an object that can have multiple properties
     <TasksContext.Provider
-      value={{ tasks, loadTasks, deleteTask, createTask, getTask, updateTask }}
+      value={{
+        tasks,
+        loadTasks,
+        deleteTask,
+        createTask,
+        getTask,
+        updateTask,
+        toggleTaskDone,
+      }}
     >
       {children}
     </TasksContext.Provider>
