@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { createTaskRequest } from "../api/tasks.api.js";
+import { createTaskRequest } from "../api/tasks.api";
 
 function TaskForm() {
   return (
