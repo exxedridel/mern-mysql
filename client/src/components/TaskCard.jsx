@@ -1,4 +1,16 @@
-function TaskCard({task}) {
+import { deleteTaskRequest } from "../api/tasks.api";
+
+function TaskCard({ task }) {
+  
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteTaskRequest(id);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <h2>{task.title}</h2>
@@ -6,7 +18,7 @@ function TaskCard({task}) {
       <span>{task.done == 1 ? "✔" : "✘"}</span>&nbsp;
       <span>{task.createdAt}</span>
       <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={() => handleDelete(task.id)}>Delete</button>
     </div>
   );
 }
