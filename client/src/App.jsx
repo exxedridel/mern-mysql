@@ -8,15 +8,19 @@ import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   return (
-    <TasksContextProvider>
+    <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<TasksPage />} />
-        <Route path="/new" element={<TaskForm />} />
-        <Route path="/edit/:id" element={<TaskForm />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </TasksContextProvider>
+      <div className="container mx-auto">
+        <TasksContextProvider>
+          <Routes>
+            <Route path="/" element={<TasksPage />} />
+            <Route path="/new" element={<TaskForm />} />
+            <Route path="/edit/:id" element={<TaskForm />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </TasksContextProvider>
+      </div>
+    </div>
   );
 }
 

@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div>
-      <h1>React MySQL</h1>
+    <div className="bg-neutral-800 flex justify-center px-3 py-4">
+      <div className="container flex justify-between ">
+        <Link to="/" className="text-lg text-white font-bold flex items-center">
+          <h1>React MySQL</h1>
+        </Link>
 
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/new">Create task</Link>
-        </li>
-      </ul>
+        <ul className="flex gap-x-2">
+          <li>
+            <Link to="/" className="bg-zinc-900 text-white px-4 py-2 rounded-sm inline-block">Home</Link>
+          </li>
+          <li>
+            <Link to="/new" className="bg-blue-700 text-white px-4 py-2 rounded-sm inline-block">Create task</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
